@@ -1,0 +1,114 @@
+class Race:
+    def __init__(self, nom, bonus_stats, competences):
+        self.nom = nom
+        self.bonus_stats = bonus_stats
+        self.competences = competences
+
+
+class ClassePerso:
+    def __init__(self, nom, bonus_stats, competences):
+        self.nom = nom
+        self.bonus_stats = bonus_stats
+        self.competences = competences
+
+
+class Personnage:
+    def __init__(self, race, classe):
+        self.race = race
+        self.classe = classe
+        self.stats = {"pv": 100, "force": 10, "vitesse": 5}
+        self.appliquer_stats()
+
+    def appliquer_stats(self):
+        for s, v in self.race.bonus_stats.items():
+            self.stats[s] += v
+        for s, v in self.classe.bonus_stats.items():
+            self.stats[s] += v
+
+
+
+races_list = {
+    "1": Race(
+        "Humain",
+        {"pv": 10, "force": 5, "vitesse": 5},
+        ["Diplomatie", "Courage", "Adaptabilité"]
+    ),
+    "2": Race(
+        "Ogre",
+        {"pv": 40, "force": 15, "vitesse": -2},
+        ["Rage bestiale", "Peau épaisse", "Intimidation"]
+    ),
+    "3": Race(
+        "Elfe",
+        {"pv": -5, "force": 3, "vitesse": 15},
+        ["Agilité elfique", "Vision nocturne", "Dextérité magique"]
+    ),
+}
+
+
+
+classes_list = {
+    "1": ClassePerso(
+        "Guerrier",
+        {"pv": 20, "force": 10, "vitesse": -1},
+        ["Frappe lourde", "Défense solide", "Provocation"]
+    ),
+    "2": ClassePerso(
+        "Archer",
+        {"pv": -5, "force": -2, "vitesse": 10},
+        ["Tir rapide", "Camouflage", "Vision précise"]
+    ),
+    "3": ClassePerso(
+        "Mage",
+        {"pv": -10, "force": 2, "vitesse": 3},
+        ["Boule de feu", "Bouclier magique", "Téléportation"]
+    ),
+}
+
+
+
+print(" choix race ")
+print("1 - Humain\n2 - Ogre\n3 - Elfe")
+race_choix = input("Votre choix : ")
+race = races_list.get(race_choix)
+
+print("\n choix classe ")
+print("1 - Guerrier\n2 - Archer\n3 - Mage")
+classe_choix = input("Votre choix : ")
+classe = classes_list.get(classe_choix)
+
+
+perso = Personnage(race, classe)
+arbre_competences = perso.race.competences + perso.classe.competences
+
+competences_dispo = {str(i+1): arbre_competences[i] for i in range(len(arbre_competences))}
+
+points_comp = 2
+competences_finales = []
+
+print("\n chois arbre competence (2 points) ")
+
+while points_comp > 0:
+    print(f"\nPoints restants : {points_comp}")
+    for num, comp in competences_dispo.items():
+        print(f"{num} - {comp}")
+    choix = input("Votre choix : ")
+
+    if choix in competences_dispo:
+        competences_finales.append(competences_dispo[choix])
+        print(f"> Compétence obtenue : {competences_dispo[choix]}")
+        points_comp -= 1
+  
+print("\n recap final ")
+print(f"Race   : {perso.race.nom}")
+print(f"Classe : {perso.classe.nom}")
+
+print("\n STATS ")
+print(f"PV       : {perso.stats['pv']}")
+print(f"Force    : {perso.stats['force']}")
+print(f"Vitesse  : {perso.stats['vitesse']}")
+
+
+print("\n competence choisis ")
+for c in competences_finales:
+    print(c)

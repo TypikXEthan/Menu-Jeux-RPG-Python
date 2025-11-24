@@ -1,0 +1,76 @@
+class Race:
+    def __init__(self, nom):
+        self.nom = nom
+
+class ClassePerso:
+    def __init__(self, nom):
+        self.nom = nom
+
+class Arme:
+    def __init__(self, nom):
+        self.nom = nom
+
+class Personnage:
+    def __init__(self, race, classe, arme):
+        self.race = race
+        self.classe = classe
+        self.arme = arme
+
+    def afficher(self):
+        print("\n PERSONNAGE CRÉÉ ")
+        print("Race  :", self.race.nom)
+        print("Classe:", self.classe.nom)
+        print("Arme  :", self.arme.nom)
+
+
+print(" Choix de la race ")
+print("1 - Ogre")
+print("2 - Elfe")
+choix_race = input("Choix : ")
+
+if choix_race == "1":
+    race = Race("Ogre")
+elif choix_race == "2":
+    race = Race("Elfe")
+
+
+
+print("\n Choix de la classe ")
+print("1 - Archer")
+print("2 - Guerrier")
+choix_classe = input("Choix : ")
+#NE PAS GARDER ARMES POUR V3
+if choix_classe == "1":
+    classe = ClassePerso("Archer")
+    print("\n=== Choix de l'arme ===")
+    print("1 - Arc long")
+    print("2 - Arbalète")
+    print("3 - Arc court")
+    choix_arme = input("Choix : ")
+
+    if choix_arme == "1":
+        arme = Arme("Arc long")
+    elif choix_arme == "2":
+        arme = Arme("Arbalète")
+    elif choix_arme == "3":
+        arme = Arme("Arc court")
+   
+
+elif choix_classe == "2":
+    classe = ClassePerso("Guerrier")
+    print("\n=== Choix de l'arme ===")
+    print("1 - Épée lourde")
+    print("2 - Hache de guerre")
+    print("3 - Marteau de combat")
+    choix_arme = input("Choix : ")
+
+    if choix_arme == "1":
+        arme = Arme("Épée lourde")
+    elif choix_arme == "2":
+        arme = Arme("Hache de guerre")
+    elif choix_arme == "3":
+        arme = Arme("Marteau de combat")
+    
+
+perso = Personnage(race, classe, arme)
+perso.afficher()

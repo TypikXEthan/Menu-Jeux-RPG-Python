@@ -1,0 +1,60 @@
+class Race:
+    def __init__(self, nom, bonus_stats, competences):
+        self.nom = nom
+        self.bonus_stats = bonus_stats
+        self.competences = competences
+
+
+class ClassePerso:
+    def __init__(self, nom, bonus_stats, competences):
+        self.nom = nom
+        self.bonus_stats = bonus_stats
+        self.competences = competences
+
+
+class Personnage:
+    def __init__(self, race, classe):
+        self.race = race
+        self.classe = classe
+        self.stats = {"pv": 100, "force": 5, "vitesse": 5}
+        self.appliquer_stats()
+
+
+races_list = {
+    "1": Race(
+        "Humain",
+        {"pv": 1, "force": 2, "vitesse": 3},
+        ["Capacité1", "Capacité2", "Capacité3"]
+    ),
+    "2": Race(
+        "Ogre",
+        {"pv": 1, "force": 2, "vitesse":3},
+        ["Capacité1", "Capacité2", "Capacité3"]
+    ),
+    "3": Race(
+        "Elfe",
+        {"pv": 1, "force": 2, "vitesse": 3},
+        ["Capacité1", "Capacité2", " Capacité3"]
+    ),
+}
+
+classes_list = {
+    "1": ClassePerso(
+        "Guerrier",
+        {"pv": 1, "force": 2, "vitesse": 3},
+        [" Capacité1", " Capacité2", "Capacité3"]
+    ),
+    "2": ClassePerso(
+        "Archer",
+        {"pv": 1, "force": 2, "vitesse": 3},
+        [" Capacité1", "Capacité2", " Capacité3"]
+    ),
+    "3": ClassePerso(
+        "Mage",
+        {"pv": 1, "force": 2, "vitesse": 3},
+        [" Capacité1", " Capacité2", "Capacité3"]
+    ),
+}
+
+#faire les prints + arbres competences
+
